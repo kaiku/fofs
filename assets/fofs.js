@@ -1,7 +1,6 @@
 var Fofs = function(element, options) {
   this.$element = $(element || 'body');
 	this.options  = $.extend({}, Fofs.DEFAULTS, options);
-  this.$canvas  = null;
   this.value    = null;
 	this.init();
 };
@@ -34,8 +33,7 @@ Fofs.prototype.calculate = function() {
       ddiff  = Math.floor(sdiff / 86400),
       binary = Number(ddiff).toString(2),
       length = binary.length,
-      pieces = [],
-      output = '';
+      pieces = [];
 
   for (var i in binary) {
     if (Number(binary[i])) {
