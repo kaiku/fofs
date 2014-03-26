@@ -1,8 +1,8 @@
 var Fofs = function(element, options) {
   this.$element = $(element || 'body');
-	this.options  = $.extend({}, Fofs.DEFAULTS, options);
+  this.options  = $.extend({}, Fofs.DEFAULTS, options);
   this.value    = null;
-	this.init();
+  this.init();
 };
 
 Fofs.DEFAULTS = {
