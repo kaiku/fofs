@@ -1,7 +1,5 @@
 # fofs
 
-```javascript
-$(function() {
-  var fof = new Fofs();
-});
-```
+## Installation
+
+`npm install -g react-tools && npm install`

@@ -1,0 +1,26 @@
+{
+  "name": "fofs",
+  "version": "1.0.0",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaiku/fofs"
+  },
+  "author": "Greg Kuwaye <greg.kuwaye@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaiku/fofs/issues"
+  },
+  "homepage": "https://github.com/kaiku/fofs",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "moment": "^2.10.3",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "eslint": "^0.24.1",
+    "eslint-plugin-react": "^3.0.0",
+    "grunt": "^0.4.5",
+    "gruntify-eslint": "^0.1.1"
+  }
+}

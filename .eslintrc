@@ -1,0 +1,28 @@
+// https://github.com/facebook/react-native/blob/master/.eslintrc
+{
+    "ecmaFeatures": {
+        "jsx": true
+    },
+
+    "env": {
+        "es6": true,
+        "jasmine": true
+    },
+
+    "plugins": [
+        "react"
+    ],
+
+    "globals": {
+        "clearInterval": true,
+        "document": true,
+        "module": true,
+        "React": true,
+        "setInterval": true,
+        "window": true
+    },
+
+    "rules": {
+        "quotes": [1, "single", "avoid-escape"]
+    }
+}

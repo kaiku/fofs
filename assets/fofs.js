@@ -1,95 +1,98 @@
-var Fofs = function(element, options) {
-  this.$element = $(element || 'body');
-  this.options  = $.extend({}, Fofs.DEFAULTS, options);
-  this.value    = null;
-  this.init();
-};
+(function(moment) {
+  'use strict';
 
-Fofs.DEFAULTS = {
-  start: 1361320200
-};
-
-Fofs.prototype.constructor = Fofs;
-
-Fofs.prototype.init = function() {
-  setInterval($.proxy(this.draw, this), 1000);
-  this.draw();
-};
-
-Fofs.prototype.draw = function() {
-  var value = this.calculate();
-
-  if (this.value === value) return;
-  this.value = value;
-  this.$element.html(this.value);
-};
-
-/**
- * @returns {string}
- */
-Fofs.prototype.calculate = function() {
-  var dayDiff = this.getDayDiff(),
-      timeUntilNext = this.getTimeUntilNextDayString(),
-      binary = Number(dayDiff).toString(2),
-      length = binary.length,
-      pieces = [];
-
-  for (var i in binary) {
-    if (Number(binary[i])) {
-      pieces.push('2<sup>' + (length - i - 1) + '</sup>');
+  var Fofs = React.createClass({
+    componentWillMount: function() {
+      // Parse the static date once
+      this.setState({start: moment(this.props.startDate)});
+    },
+    componentDidMount: function() {
+      this.tick();
+      this.interval = setInterval(this.tick, 1000);
+    },
+    componentWillUnmount: function() {
+      clearInterval(this.interval);
+    },
+    tick: function() {
+      var ms = moment() - this.state.start;
+      this.setState({
+        ms: ms,
+        days: Math.floor(moment.duration(ms).asDays())
+      });
+    },
+    render: function() {
+      return (
+        <div>
+          <DaysAsPowersOfTwo days={this.state.days} />
+          <DaysDisplay days={this.state.days} />
+          <Countdown ms={this.state.ms} />
+        </div>
+      );
     }
-  }
+  });
 
-  var str = '';
-  str += pieces.join(' + ');
-  str += ' <div class="total">' + dayDiff + ' days</div>';
-  str += ' <div class="next-in">Next fof time in ' + timeUntilNext + '</div>';
-  return str;
-};
+  /**
+   * Renders days as a sum of powers of two.
+   */
+  var DaysAsPowersOfTwo = React.createClass({
+    getHtml: function() {
+      var binaryStr = Number(this.props.days).toString(2),
+          length = binaryStr.length;
 
-/**
- * @returns {number}
- */
-Fofs.prototype.getDayDiff = function() {
-  var secondsDiff = this.getSecondsDiff();
-  return Math.floor(secondsDiff / 86400);
-};
+      return {
+        __html: binaryStr.split('').reduce(function(acc, bit, idx) {
+          if (+bit) {
+            var power = length - idx - 1;
+            acc.push('2<sup>' + power + '</sup>');
+          }
+          return acc;
+        }, []).join(' + ')
+      };
+    },
+    render: function() {
+      return <div className="powers" dangerouslySetInnerHTML={this.getHtml()}></div>;
+    }
+  });
 
-/**
- * @returns {number}
- */
-Fofs.prototype.getSecondsDiff = function() {
-  var utc = Math.floor(new Date().getTime() / 1000);
-  return utc - this.options.start;
-};
+  /**
+   * Renders a simples "number of days" string.
+   */
+  var DaysDisplay = React.createClass({
+    dayOrDays: function() {
+      return this.props.days === 1 ? 'day' : 'days';
+    },
+    render: function() {
+      return <div className="total">{this.props.days} {this.dayOrDays()}</div>;
+    }
+  });
 
-/**
- * @returns {string}
- */
-Fofs.prototype.getTimeUntilNextDayString = function() {
-  var totalSecUntilNext = this.getSecondsUntilNextDay(),
-      hoursUntilNext = Math.floor(totalSecUntilNext / 3600),
-      minUntilNext = Math.floor((totalSecUntilNext - (hoursUntilNext * 3600)) / 60),
-      secUntilNext = totalSecUntilNext - (hoursUntilNext * 3600) - (minUntilNext * 60);
+  /**
+   * Renders a countdown until the next day change.
+   */
+  var Countdown = React.createClass({
+    getTime: function() {
+      var dayInMs = 86400000,
+          msUntilNext = dayInMs - (this.props.ms % dayInMs),
+          duration = moment.duration(msUntilNext),
+          hours = Math.floor(duration.asHours()),
+          minutes = Math.floor(duration.subtract(hours, 'h').asMinutes()),
+          seconds = Math.floor(duration.subtract(minutes, 'm').asSeconds());
 
-  return this.padWithZero(hoursUntilNext) + ':' +
-    this.padWithZero(minUntilNext) + ':' +
-    this.padWithZero(secUntilNext);
-};
+      return [hours, minutes, seconds].map(function(value) {
+          return (value < 10 ? '0' : '') + value;
+        }).join(':');
+    },
+    render: function() {
+      return (
+        <div className="next-in">
+          Next fof time in {this.getTime()}
+        </div>
+      );
+    }
+  });
 
-/**
- * @returns {number}
- */
-Fofs.prototype.getSecondsUntilNextDay = function() {
-  var secondsDiff = this.getSecondsDiff();
-  // Seconds in day minus number of seconds elapsed in this day.
-  return 86400 - (secondsDiff % 86400);
-};
-
-/**
- * @param {number} val
- * @return {string}
- */
-Fofs.prototype.padWithZero = function(val) {
-  return val < 10 ? ('0' + val) : ('' + val);
-};
+  React.render(
+    <Fofs startDate="2013-02-19 19:30:00-05:00" />,
+    document.getElementById('fofs')
+  );
+}(window.moment));
