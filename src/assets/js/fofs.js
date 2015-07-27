@@ -2,9 +2,11 @@
   'use strict';
 
   var Fofs = React.createClass({
-    componentWillMount: function() {
-      // Parse the static date once
-      this.setState({start: moment(this.props.startDate)});
+    getInitialState: function() {
+      return {
+        // Parse the static date once
+        start: moment(this.props.startDate)
+      };
     },
     componentDidMount: function() {
       this.tick();
