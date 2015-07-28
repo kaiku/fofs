@@ -75,10 +75,10 @@
     getTime: function() {
       var dayInMs = 86400000,
           msUntilNext = dayInMs - (this.props.ms % dayInMs),
-          duration = moment.duration(msUntilNext),
-          hours = Math.floor(duration.asHours()),
-          minutes = Math.floor(duration.subtract(hours, 'h').asMinutes()),
-          seconds = Math.floor(duration.subtract(minutes, 'm').asSeconds());
+          secUntilNext = Math.ceil(msUntilNext / 1000),
+          hours = Math.floor(secUntilNext / 3600),
+          minutes = Math.floor((secUntilNext - (hours * 3600)) / 60),
+          seconds = secUntilNext - (hours * 3600) - (minutes * 60);
 
       return [hours, minutes, seconds].map(function(value) {
           return (value < 10 ? '0' : '') + value;
