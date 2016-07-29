@@ -93,8 +93,44 @@
     }
   });
 
+  var DaysUntil = React.createClass({
+    getInitialState: function() {
+      return {
+        until: moment(this.props.untilDate, 'YYYY-MM-DD')
+      };
+    },
+    componentDidMount: function() {
+      this.tick();
+      this.interval = setInterval(this.tick, 500);
+    },
+    componentWillUnmount: function() {
+      clearInterval(this.interval);
+    },
+    tick: function() {
+      var ms = this.state.until - moment();
+      var days = Math.max(0, Math.floor(moment.duration(ms).asDays()));
+      var word = days === 1 ? 'day' : 'days';
+      this.setState({
+        days: days,
+        word: word
+      });
+    },
+    render: function() {
+      return (
+        <span className="days-until">
+          {this.state.days} {this.state.word}
+        </span>
+      );
+    }
+  });
+
   React.render(
     <Fofs startDate="2013-02-19 19:30:00-05:00" />,
     document.getElementById('fofs')
+  );
+
+  React.render(
+    <DaysUntil untilDate="2016-09-24" />,
+    document.getElementById('countdown-days')
   );
 }(window.moment));
