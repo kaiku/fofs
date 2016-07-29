@@ -150,6 +150,10 @@ module.exports = function(grunt) {
       less: {
         files: ['src/assets/less/*.less'],
         tasks: ['less']
+      },
+      html: {
+        files: ['src/*.html'],
+        tasks: ['less']
       }
     }
   });
