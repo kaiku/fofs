@@ -1,36 +1,27 @@
 {
-  "name": "fofs",
-  "version": "1.0.0",
-  "main": "index.html",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kaiku/fofs"
-  },
-  "author": "Greg Kuwaye <greg.kuwaye@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kaiku/fofs/issues"
-  },
-  "homepage": "https://github.com/kaiku/fofs",
-  "dependencies": {
-    "jquery": "^2.1.4",
-    "moment": "^2.10.3",
-    "react": "^0.13.3"
-  },
-  "devDependencies": {
-    "babel-preset-react": "^6.11.1",
-    "eslint-plugin-react": "^5.2.2",
-    "grunt": "^1.0.1",
-    "grunt-babel": "^6.0.0",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-connect": "^1.0.2",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^1.0.1",
-    "grunt-contrib-htmlmin": "^1.4.0",
-    "grunt-contrib-less": "^1.0.1",
-    "grunt-contrib-uglify": "^1.0.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-preprocess": "^5.0.1",
-    "gruntify-eslint": "^2.0.0"
-  }
+    "name": "fofs",
+    "version": "1.0.0",
+    "main": "index.html",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kaiku/fofs"
+    },
+    "author": "Greg Kuwaye <greg.kuwaye@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/kaiku/fofs/issues"
+    },
+    "homepage": "https://github.com/kaiku/fofs",
+    "devDependencies": {
+        "babel-preset-react": "^6.11.1",
+        "eslint-plugin-react": "^6.1.2",
+        "grunt": "^1.0.1",
+        "grunt-babel": "^6.0.0",
+        "grunt-contrib-clean": "^1.0.0",
+        "grunt-contrib-connect": "^1.0.2",
+        "grunt-contrib-copy": "^1.0.0",
+        "grunt-contrib-less": "^1.4.0",
+        "grunt-contrib-watch": "^1.0.0",
+        "gruntify-eslint": "^3.1.0"
+    }
 }

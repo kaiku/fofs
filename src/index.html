@@ -8,26 +8,15 @@
     <link rel="icon" type="image/png" href="assets/img/fofs-32x32.png" />
     <link href="//fonts.googleapis.com/css?family=Lemon" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-    <!-- @if NODE_ENV='development' -->
-    <script src="assets/js/moment/moment.js" type="text/javascript"></script>
-    <script src="assets/js/react/react.js" type="text/javascript"></script>
-    <script src="assets/js/react/JSXTransformer.js" type="text/javascript"></script>
-    <!-- @endif -->
-    <!-- @if NODE_ENV='production' -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js" type="text/javascript"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js" type="text/javascript"></script>
-    <!-- @endif -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="fofs"></div>
 <div id="countdown">
   <span id="countdown-days"></span> until we say I do!
 </div>
-<!-- @if NODE_ENV='development' -->
-<script type="text/jsx" src="assets/js/fofs.js"></script>
-<!-- @endif -->
-<!-- @if NODE_ENV='production' -->
 <script type="text/javascript" src="assets/js/fofs.js"></script>
-<!-- @endif -->
 </body>
 </html>

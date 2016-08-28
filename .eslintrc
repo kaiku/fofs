@@ -18,11 +18,10 @@
         "document": true,
         "module": true,
         "React": true,
+        "ReactDOM": true,
         "setInterval": true,
         "window": true
     },
 
-    "rules": {
-        "quotes": [1, "single", "avoid-escape"]
-    }
+    "extends": "eslint:recommended"
 }
