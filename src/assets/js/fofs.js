@@ -128,8 +128,3 @@ ReactDOM.render(
     <Fofs startDate="2013-02-19 19:30:00-05:00" />,
     document.getElementById('fofs')
 );
-
-ReactDOM.render(
-    <DaysUntil untilDate="2016-09-24" />,
-    document.getElementById('countdown-days')
-);
