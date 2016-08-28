@@ -22,9 +22,10 @@ const Fofs = React.createClass({
     render() {
         return (
             <div>
-                <DaysAsPowersOfTwo days={this.state.days} />
                 <DaysDisplay days={this.state.days} />
+                <DaysAsPowersOfTwo days={this.state.days} />
                 <Countdown ms={this.state.ms} />
+                <DaysUntil untilDate="2016-09-24" />
             </div>
         );
     }
@@ -42,10 +43,10 @@ const DaysAsPowersOfTwo = React.createClass({
             __html: binaryStr.split('').reduce((acc, bit, idx) => {
                 if (+bit) {
                     const power = length - idx - 1;
-                    acc.push('2<sup>' + power + '</sup>');
+                    acc.push(`<span class="pow">2<sup>${power}</sup></span>`);
                 }
                 return acc;
-            }, []).join(' + ')
+            }, []).join('<span class="plus">+</span>')
         };
     },
     render() {
@@ -84,7 +85,7 @@ const Countdown = React.createClass({
     render() {
         return (
             <div className="next-in">
-                Next fof time in {this.getTime()}
+                Next fof time in <span className="next-in-time">{this.getTime()}</span>
             </div>
         );
     }
@@ -114,9 +115,11 @@ const DaysUntil = React.createClass({
     },
     render: function() {
         return (
-            <span className="days-until">
-                {this.state.days} {this.state.word}
-            </span>
+            <div className="days-until">
+                <span>
+                    {this.state.days} {this.state.word}
+                </span> until we say I do!
+            </div>
         );
     }
 });

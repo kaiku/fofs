@@ -10,7 +10,7 @@ html, body {
 }
 
 body {
-  font-family: 'Lemon', sans-serif;
+  font-family: 'balboa-plus-inline', sans-serif;
   text-align: center;
   background: pink;
 }
@@ -21,32 +21,48 @@ sup {
 }
 
 #fofs {
-  font-size: 3.5rem;
-  line-height: 1.25;
   overflow: auto;
-  padding: 10% 1rem .5rem;
+  padding: 10vh 2vw;
 }
 
 .total {
-  font-size: 4rem;
-  margin: 1rem 0 1.5rem;
+  margin: 3vh 0 5vh;
+  font-family: 'sutro-shaded-primary', sans-serif;
+  font-weight: 400;
+  // http://codepen.io/CrocoDillon/pen/jgmwt
+  font-size: calc(4vw + 4vh + 3vmin);
+}
+
+.powers {
+    font-family: 'balboa-condensed', sans-serif;
+    font-weight: 400;
+    font-size: 9vw;
+    margin: 3vh 0 6vh;
+
+    .plus {
+        margin: 0 0.2em;
+    }
 }
 
 .next-in {
-  font-size: 1.8rem;
+    font-size: 6vw;
+    margin: 2vh 0 3vh;
 }
 
-#countdown {
-  margin-top: 3rem;
-  font-size: 2rem;
+.days-until {
+    font-size: 6vw;
+    margin: 2vh 0;
 
-  &:before {
-    content: '❤';
-    margin-right: 0.2rem;
-  }
+    &:before, &:after {
+        content: '❤';
+        color: red;
+    }
 
-  &:after {
-    content: '❤';
-    margin-left: 0.2rem;
-  }
+    &:before {
+        margin-right: 0.3em;
+    }
+
+    &:after {
+        margin-left: 0.3em;
+    }
 }
