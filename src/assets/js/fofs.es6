@@ -105,8 +105,8 @@ const DaysUntil = React.createClass({
         clearInterval(this.interval);
     },
     tick() {
-        const ms = this.state.until - moment();
-        const days = Math.max(0, Math.floor(moment.duration(ms).asDays()));
+        const ms = this.state.until - moment().startOf('day');
+        const days = Math.max(0, moment.duration(ms).asDays());
         const word = days === 1 ? 'day' : 'days';
         this.setState({
             days,
