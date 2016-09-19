@@ -77,7 +77,7 @@ module.exports = function(grunt) {
                 tasks: ['build']
             },
             js: {
-                files: ['src/assets/js/*.js'],
+                files: ['src/assets/js/*.js', 'src/assets/js/*.es6'],
                 tasks: [
                     'eslint',
                     'clean:js',
