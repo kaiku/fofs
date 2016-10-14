@@ -2,7 +2,8 @@ const Fofs = React.createClass({
     getInitialState() {
         return {
             // Parse the static date once
-            start: moment(this.props.startDate),
+            bridgeDate: moment(this.props.bridgeDate),
+            forestDate: moment(this.props.forestDate),
         };
     },
     componentDidMount() {
@@ -13,19 +14,19 @@ const Fofs = React.createClass({
         clearInterval(this.interval);
     },
     tick() {
-        const ms = moment() - this.state.start;
+        const bridgeMs = moment() - this.state.bridgeDate;
         this.setState({
-            ms,
-            days: Math.floor(moment.duration(ms).asDays())
+            bridgeMs,
+            bridgeDays: Math.floor(moment.duration(bridgeMs).asDays())
         });
     },
     render() {
         return (
             <div>
-                <DaysDisplay days={this.state.days} />
-                <DaysAsPowersOfTwo days={this.state.days} />
-                <Countdown ms={this.state.ms} />
-                <DaysUntil untilDate="2016-09-24" />
+                <DaysDisplay days={this.state.bridgeDays} />
+                <DaysAsPowersOfTwo days={this.state.bridgeDays} />
+                <Countdown ms={this.state.bridgeMs} />
+                <DaysSince sinceDate={this.state.forestDate} />
             </div>
         );
     }
@@ -91,10 +92,10 @@ const Countdown = React.createClass({
     }
 });
 
-const DaysUntil = React.createClass({
+const DaysSince = React.createClass({
     getInitialState() {
         return {
-            until: moment(this.props.untilDate, 'YYYY-MM-DD')
+            since: this.props.sinceDate,
         };
     },
     componentDidMount() {
@@ -105,26 +106,22 @@ const DaysUntil = React.createClass({
         clearInterval(this.interval);
     },
     tick() {
-        const ms = this.state.until - moment().startOf('day');
-        const days = Math.max(0, moment.duration(ms).asDays());
-        const word = days === 1 ? 'day' : 'days';
+        const ms = moment() - this.state.since;
+        const days = Math.floor(moment.duration(ms).asDays());
         this.setState({
             days,
-            word,
         });
     },
     render: function() {
         return (
-            <div className="days-until">
-                <span>
-                    {this.state.days} {this.state.word}
-                </span> until we say I do!
+            <div className="days-since">
+                {this.state.days} days since we said I do!
             </div>
         );
     }
 });
 
 ReactDOM.render(
-    <Fofs startDate="2013-02-19 19:30:00-05:00" />,
+    <Fofs bridgeDate="2013-02-19 19:30:00-05:00" forestDate="2016-09-24 15:30:00-07:00" />,
     document.getElementById('fofs')
 );
