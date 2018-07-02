@@ -3,12 +3,7 @@
 * { box-sizing: border-box; }
 
 body {
-    font-family: "Lucida Console", Monaco, monospace;
-}
-
-sup {
-    font-size: 60%;
-    margin-top: -10%;
+    font-family: "motor", sans-serif;
 }
 
 .fb-6 { flex-basis: calc(100% / 6); }
@@ -23,56 +18,80 @@ sup {
     flex-flow: row wrap;
     width: 100%;
     color: #fff;
-}
 
-.flex-container > div {
-    display: flex;
-    flex-basis: calc(100% / 3);
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-}
+    > div {
+        display: flex;
+        flex-basis: calc(100% / 3);
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
 
-.flex-container > .days {
-    font-size: 10vw;
-    background: royalblue;
-    text-shadow: 3px 3px mediumspringgreen;
-}
+    > .days {
+        font-family: "sutro-shaded-primary", sans-serif;
+        font-size: 10vw;
+        background: royalblue;
+        text-shadow: 3px 3px mediumspringgreen;
+    }
 
-.flex-container > .powers,
-.flex-container > .countdown {
-    flex-basis: calc(100% / 3 * 2);
-    flex-flow: row wrap;
-}
+    > .powers,
+    > .countdown {
+        flex-basis: calc(100% / 3 * 2);
+        flex-flow: row wrap;
+    }
 
-.flex-container > .powers {
-    background: deepskyblue;
-}
+    > .powers {
+        background: deepskyblue;
 
-.flex-container > .powers > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25vh;
-    font-size: 4.5vw;
-    text-shadow: 3px 3px lightcoral;
-}
+        > div {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25vh;
+            font-size: 6.5vw;
+            text-shadow: 3px 3px lightcoral;
 
-.flex-container > .countdown {
-    background: gold;
-    font-size: 3.8vw;
-    text-shadow: 4px 4px plum;
-}
+            sup {
+                font-size: 55%;
+                margin: -2.5rem 0 0 0.2rem;
+            }
 
-.flex-container > .forest {
-    font-size: 5.5vw;
-    background: forestgreen;
-    text-shadow: 3px 3px mediumspringgreen;
-}
+            &::before {
+                position: absolute;
+                left: -0.25em;
+                content: '+';
+                font-size: 5vw;
+            }
 
-.flex-container > .forest::before,
-.flex-container > .forest::after {
-    display: block;
-    content: '🌲';
-    margin: 0 0.5rem;
+            &:first-of-type::before {
+                content: '=';
+            }
+        }
+    }
+
+    > .countdown {
+        background: gold;
+        font-size: 4vw;
+        text-shadow: 3px 3px orchid;
+
+        > span {
+            font-size: 6.5vw;
+        }
+    }
+
+    > .forest {
+        font-family: "sutro-shaded-primary", sans-serif;
+        font-size: 6.5vw;
+        background: forestgreen;
+        text-shadow: 3px 3px mediumspringgreen;
+
+        &::before,
+        &::after {
+            display: block;
+            width: 100%;
+            content: '🌲';
+            text-align: center;
+        }
+    }
 }

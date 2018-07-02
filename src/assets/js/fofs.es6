@@ -108,7 +108,7 @@ const Countdown = React.createClass({
     render() {
         return (
             <div className="countdown">
-                Next fof time in {this.getTime()}
+                Next fof time in&nbsp;<span>{this.getTime()}</span>
             </div>
         );
     }
