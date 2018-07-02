@@ -22,7 +22,7 @@ const Fofs = React.createClass({
     },
     render() {
         return (
-            <div>
+            <div className="flex-container">
                 <DaysDisplay days={this.state.bridgeDays} />
                 <DaysAsPowersOfTwo days={this.state.bridgeDays} />
                 <Countdown ms={this.state.bridgeMs} />
@@ -36,19 +36,44 @@ const Fofs = React.createClass({
  * Renders days as a sum of powers of two.
  */
 const DaysAsPowersOfTwo = React.createClass({
-    getHtml: function() {
-        const binaryStr = Number(this.props.days).toString(2);
+    getHtml() {
+        const days = this.props.days;
+        const binaryStr = Number(days).toString(2);
+        if (isNaN(binaryStr)) {
+            return;
+        }
+
         const length = binaryStr.length;
+        const lengthOfOnes = binaryStr.split('').reduce((acc, bit, idx) => {
+            return acc += +bit;
+        }, 0);
+        const rows = this.splitToRows(lengthOfOnes, 6);
+        let classList = [];
+
+        rows.forEach((num) => {
+            classList.push(Array(num).fill(`fb-${num}`));
+        });
+        classList = [].concat(...classList);
 
         return {
             __html: binaryStr.split('').reduce((acc, bit, idx) => {
                 if (+bit) {
                     const power = length - idx - 1;
-                    acc.push(`<span class="pow">2<sup>${power}</sup></span>`);
+                    const cls = classList[acc.length];
+                    acc.push(`<div class="${cls}">2<sup>${power}</sup></div>`);
                 }
                 return acc;
-            }, []).join('<span class="plus">+</span>')
+            }, []).join('')
         };
+    },
+    splitToRows(num, max) {
+        if (num <= max) {
+            return [num];
+        } else {
+            const top = Math.floor(num / 2);
+            const bottom = Math.ceil(num / 2);
+            return [top, bottom];
+        }
     },
     render() {
         return <div className="powers" dangerouslySetInnerHTML={this.getHtml()}></div>;
@@ -59,11 +84,8 @@ const DaysAsPowersOfTwo = React.createClass({
 * Renders a simples "number of days" string.
 */
 const DaysDisplay = React.createClass({
-    dayOrDays() {
-        return this.props.days === 1 ? 'day' : 'days';
-    },
     render() {
-        return <div className="total">{this.props.days} {this.dayOrDays()}</div>;
+        return <div className="days">{this.props.days}</div>;
     }
 });
 
@@ -85,8 +107,8 @@ const Countdown = React.createClass({
     },
     render() {
         return (
-            <div className="next-in">
-                Next fof time in <span className="next-in-time">{this.getTime()}</span>
+            <div className="countdown">
+                Next fof time in {this.getTime()}
             </div>
         );
     }
@@ -114,8 +136,8 @@ const DaysSince = React.createClass({
     },
     render: function() {
         return (
-            <div className="days-since">
-                {this.state.days} days since we said I do!
+            <div className="forest">
+                <span>{this.state.days}</span>
             </div>
         );
     }
