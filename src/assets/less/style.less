@@ -74,24 +74,31 @@ body {
         background: gold;
         font-size: 4vw;
         text-shadow: 3px 3px orchid;
+        align-items: center;
+        align-content: center;
 
-        > span {
-            font-size: 6.5vw;
+        > div {
+            flex-basis: 100%;
+            text-align: center;
+        }
+
+        > .time {
+            padding-top: 0.35rem;
+            font-size: 10vw;
         }
     }
 
     > .forest {
         font-family: "sutro-shaded-primary", sans-serif;
-        font-size: 6.5vw;
+        font-size: 8vw;
         background: forestgreen;
         text-shadow: 3px 3px mediumspringgreen;
 
-        &::before,
-        &::after {
+        &::before {
             display: block;
-            width: 100%;
+            font-size: 80%;
+            margin: 0.5rem 0.35rem 0 0;
             content: '🌲';
-            text-align: center;
         }
     }
 }
