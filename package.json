@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/kaiku/fofs/issues"
   },
-  "homepage": "https://github.com/kaiku/fofs",
+  "homepage": "https://hi.f0f.io",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
