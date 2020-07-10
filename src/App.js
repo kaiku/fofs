@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       bridgeDate: moment(this.props.bridgeDate),
       forestDate: moment(this.props.forestDate),
+      tDate: moment(this.props.tDate),
     };
     this.tick = this.tick.bind(this);
     this.getPowersOfTwoHTML = this.getPowersOfTwoHTML.bind(this);
@@ -30,16 +31,21 @@ class App extends React.Component {
     const now = moment();
     const bridgeMs = now - this.state.bridgeDate;
     const forestMs = now - this.state.forestDate;
+    const tMs = now - this.state.tDate;
     const bridgeDays = Math.floor(moment.duration(bridgeMs).asDays());
     const forestDays = Math.floor(moment.duration(forestMs).asDays());
+    const tDays = Math.floor(moment.duration(tMs).asDays());
     const powersOfTwoHTML = this.getPowersOfTwoHTML(bridgeDays);
+    const tPowersOfTwoHTML = this.getPowersOfTwoHTML(tDays);
     const countdownString = this.getCountdownString(bridgeMs);
 
     this.setState({
       bridgeMs,
       bridgeDays,
       forestDays,
+      tDays,
       powersOfTwoHTML,
+      tPowersOfTwoHTML,
       countdownString,
     });
   }
@@ -106,6 +112,12 @@ class App extends React.Component {
         </div>
         {/* Powers of two */}
         <div className="powers" dangerouslySetInnerHTML={this.state.powersOfTwoHTML}></div>
+        {/* T days */}
+        <div className="t-days">
+          {this.state.tDays}
+        </div>
+        {/* T powers of two */}
+        <div className="powers t-powers" dangerouslySetInnerHTML={this.state.tPowersOfTwoHTML}></div>
         {/* Countdown */}
         <div className="countdown">
           <div>Next fof time in</div>

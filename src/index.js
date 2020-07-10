@@ -8,6 +8,7 @@ ReactDOM.render(
   <App
     bridgeDate="2013-02-19 19:30:00-05:00"
     forestDate="2016-09-24 15:30:00-07:00"
+    tDate="2020-05-09 07:02:00-10:00"
   />,
   document.getElementById('root')
 );

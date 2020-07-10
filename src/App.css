@@ -34,12 +34,16 @@
   flex-basis: calc(100% / 3);
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: calc(100vh / 3);
+}
+
+.flex-container > .days,
+.flex-container > .t-days {
+  font-family: "sutro-shaded-primary", sans-serif;
+  font-size: 10vw;
 }
 
 .flex-container > .days {
-  font-family: "sutro-shaded-primary", sans-serif;
-  font-size: 10vw;
   background: royalblue;
   text-shadow: 3px 3px mediumspringgreen;
 }
@@ -80,6 +84,19 @@
   content: '=';
 }
 
+.flex-container > .t-days {
+  background: #52A182;
+  text-shadow: 3px 3px #2a8762;
+}
+
+.flex-container > .t-powers {
+  background: #E29276;
+}
+
+.flex-container > .t-powers > div {
+  text-shadow: 3px 3px rgb(78, 139, 209);
+}
+
 .flex-container > .countdown {
   background: gold;
   font-size: 4vw;
@@ -94,8 +111,7 @@
 }
 
 .flex-container > .countdown > .time {
-  padding-top: 0.35rem;
-  font-size: 10vw;
+  font-size: 8.5vw;
 }
 
 .flex-container > .forest {
