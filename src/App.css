@@ -1,4 +1,5 @@
-.fb-6 {
+.fb-6,
+.fb-one-sixth {
   flex-basis: calc(100% / 6);
 }
 
@@ -10,15 +11,22 @@
   flex-basis: 25%;
 }
 
-.fb-3 {
+.fb-3,
+.fb-one-third {
   flex-basis: calc(100% / 3);
 }
 
-.fb-2 {
+.fb-2,
+.fb-one-half {
   flex-basis: 50%;
 }
 
-.fb-1 {
+.fb-two-thirds {
+  flex-basis: calc(100% / 3 * 2);
+}
+
+.fb-1,
+.fb-full {
   flex-basis: 100%;
 }
 
@@ -29,36 +37,30 @@
   color: #fff;
 }
 
-.flex-container > div {
+.flex-container div {
   display: flex;
-  flex-basis: calc(100% / 3);
   justify-content: center;
   align-items: center;
   height: calc(100vh / 3);
 }
 
-.flex-container > .days,
-.flex-container > .t-days {
+.flex-container .days {
   font-family: "sutro-shaded-primary", sans-serif;
   font-size: 10vw;
-}
-
-.flex-container > .days {
   background: royalblue;
   text-shadow: 3px 3px mediumspringgreen;
 }
 
-.flex-container > .powers,
-.flex-container > .countdown {
-  flex-basis: calc(100% / 3 * 2);
+.flex-container .powers,
+.flex-container .countdown {
   flex-flow: row wrap;
 }
 
-.flex-container > .powers {
+.flex-container .powers {
   background: deepskyblue;
 }
 
-.flex-container > .powers > div {
+.flex-container .powers > div {
   position: relative;
   display: flex;
   justify-content: center;
@@ -68,36 +70,63 @@
   text-shadow: 3px 3px lightcoral;
 }
 
-.flex-container > .powers > div sup {
+.flex-container .powers > div sup {
   font-size: 45%;
   margin: -1.75rem 0 0 0.1rem;
 }
 
-.flex-container > .powers > div::before {
+.flex-container .powers > div::before {
   position: absolute;
   left: -0.25em;
   content: '+';
   font-size: 5vw;
 }
 
-.flex-container > .powers > div:first-of-type::before {
+.flex-container .powers > div:first-of-type::before {
   content: '=';
 }
 
-.flex-container > .t-days {
-  background: #52A182;
-  text-shadow: 3px 3px #2a8762;
+.flex-container .c-powers > div:first-of-type::before {
+  content: '';
 }
 
-.flex-container > .t-powers {
+.flex-container .c-powers > div:last-of-type::after {
+  content: '=';
+  right: -0.25em;
+  position: absolute;
+}
+
+.flex-container .t-days {
+  background: #52A182;
+  text-shadow: 3px 3px #2a8762;
+  font-size: 5vw;
+}
+
+.flex-container .t-powers {
   background: #E29276;
 }
 
-.flex-container > .t-powers > div {
+.flex-container .t-powers > div {
+  font-size: 4.2vw;
   text-shadow: 3px 3px rgb(78, 139, 209);
 }
 
-.flex-container > .countdown {
+.flex-container .c-days {
+  background: #9F5130;
+  text-shadow: 3px 3px #cca751;
+  font-size: 5vw;
+}
+
+.flex-container .c-powers {
+  background: #9F3047;
+}
+
+.flex-container .c-powers > div {
+  font-size: 4.2vw;
+  text-shadow: 3px 3px #e96f88;
+}
+
+.flex-container .countdown {
   background: gold;
   font-size: 4vw;
   text-shadow: 3px 3px orchid;
@@ -105,23 +134,23 @@
   align-content: center;
 }
 
-.flex-container > .countdown > div {
-  flex-basis: 100%;
+.flex-container .countdown > div {
   text-align: center;
+  height: auto;
 }
 
-.flex-container > .countdown > .time {
+.flex-container .countdown > .time {
   font-size: 8.5vw;
 }
 
-.flex-container > .forest {
+.flex-container .forest {
   font-family: "sutro-shaded-primary", sans-serif;
   font-size: 8vw;
   background: forestgreen;
   text-shadow: 3px 3px mediumspringgreen;
 }
 
-.flex-container > .forest::before {
+.flex-container .forest::before {
   display: block;
   font-size: 80%;
   margin: 0.5rem 0.35rem 0 0;

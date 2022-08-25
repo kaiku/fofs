@@ -11,6 +11,7 @@ class App extends React.Component {
       bridgeDate: moment(this.props.bridgeDate),
       forestDate: moment(this.props.forestDate),
       tDate: moment(this.props.tDate),
+      cDate: moment(this.props.cDate),
     };
     this.tick = this.tick.bind(this);
     this.getPowersOfTwoHTML = this.getPowersOfTwoHTML.bind(this);
@@ -32,11 +33,14 @@ class App extends React.Component {
     const bridgeMs = now - this.state.bridgeDate;
     const forestMs = now - this.state.forestDate;
     const tMs = now - this.state.tDate;
+    const cMs = now - this.state.cDate;
     const bridgeDays = Math.floor(moment.duration(bridgeMs).asDays());
     const forestDays = Math.floor(moment.duration(forestMs).asDays());
     const tDays = Math.floor(moment.duration(tMs).asDays());
+    const cDays = Math.floor(moment.duration(cMs).asDays());
     const powersOfTwoHTML = this.getPowersOfTwoHTML(bridgeDays);
     const tPowersOfTwoHTML = this.getPowersOfTwoHTML(tDays);
+    const cPowersOfTwoHTML = this.getPowersOfTwoHTML(cDays);
     const countdownString = this.getCountdownString(bridgeMs);
 
     this.setState({
@@ -44,8 +48,10 @@ class App extends React.Component {
       bridgeDays,
       forestDays,
       tDays,
+      cDays,
       powersOfTwoHTML,
       tPowersOfTwoHTML,
+      cPowersOfTwoHTML,
       countdownString,
     });
   }
@@ -106,25 +112,25 @@ class App extends React.Component {
   render() {
     return (
       <div className="flex-container">
-        {/* Bridge days */}
-        <div className="days">
+        <div className="days fb-one-third">
           {this.state.bridgeDays}
         </div>
-        {/* Powers of two */}
-        <div className="powers" dangerouslySetInnerHTML={this.state.powersOfTwoHTML}></div>
-        {/* T days */}
-        <div className="t-days">
-          {this.state.tDays}
+        <div className="powers fb-two-thirds" dangerouslySetInnerHTML={this.state.powersOfTwoHTML}></div>
+        <div className="k fb-full">
+          <div className="days t-days fb-one-sixth">
+            {this.state.tDays}
+          </div>
+          <div className="powers t-powers fb-one-third" dangerouslySetInnerHTML={this.state.tPowersOfTwoHTML}></div>
+          <div className="powers c-powers fb-one-third" dangerouslySetInnerHTML={this.state.cPowersOfTwoHTML}></div>
+          <div className="days c-days fb-one-sixth">
+            {this.state.cDays}
+          </div>
         </div>
-        {/* T powers of two */}
-        <div className="powers t-powers" dangerouslySetInnerHTML={this.state.tPowersOfTwoHTML}></div>
-        {/* Countdown */}
-        <div className="countdown">
-          <div>Next fof time in</div>
-          <div className="time">{this.state.countdownString}</div>
+        <div className="countdown fb-two-thirds">
+          <div class="fb-full">Next fof time in</div>
+          <div className="time fb-full">{this.state.countdownString}</div>
         </div>
-        {/* Forest days */}
-        <div className="forest">
+        <div className="forest fb-one-third">
           <span>{this.state.forestDays}</span>
         </div>
       </div>
